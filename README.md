@@ -8,14 +8,11 @@
     ```
 
 2. **Install dependencies:**
+    open frontend and backend folder terminals run the following command:
     ```sh
-    open frontend and backend folders in sperate terminals and run npm i
-    eg:-
-    cd frontend
-    npm i
-    cd backend
     npm i
     ```
+
 
 3. **Set up environment variables:**
     Create a `.env` file in the backend root directory and add the following:
@@ -25,8 +22,8 @@
     ```
 
 4. **Run the application:**
+    In the backend and frontend terminals run the following command:
     ```sh
-    In the backend and frontend terminals run
     npm run dev
     ```
 
