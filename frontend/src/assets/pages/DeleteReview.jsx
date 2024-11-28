@@ -23,23 +23,22 @@ const DeleteReview = ({ id, onClose, onDelete }) => {
     >
       <div
         onClick={(event) => event.stopPropagation()}
-        className="w-[600px] max-w-full h-auto bg-white rounded-xl p-4 flex flex-col relative"
+        className="w-[90%] max-w-md bg-white rounded-xl p-4 flex flex-col relative"
       >
-        <h1 className="text-3xl my-4 font-Philosopher text-center">
+        <h1 className="text-2xl sm:text-3xl my-4 font-semibold text-center">
           Delete Review
         </h1>
         <MdOutlineCancel
-          className="absolute top-6 right-6 text-3xl text-red-600 cursor-pointer"
+          className="absolute top-4 right-4 text-2xl sm:text-3xl text-red-600 cursor-pointer"
           onClick={onClose}
         />
-        <div className="flex flex-col items-center border-sky-400 rounded-xl w-[600px] p-8 mx-auto">
-          <h3 className="text-2xl font-BreeSerif">
-            Are you shure you want to delete this Review? This action cannot be
-            undone.
+        <div className="flex flex-col items-center p-4">
+          <h3 className="text-lg sm:text-xl text-center font-medium mb-6">
+            Are you sure you want to delete this review? This action cannot be undone.
           </h3>
 
           <button
-            className="p-4 bg-red-600 text-white m-8 w-90% font-BreeSerif rounded-md shadow-md hover:bg-red-700 transition duration-300 ease-in-out"
+            className="w-full sm:w-auto px-6 py-3 bg-red-600 text-white font-medium rounded-md shadow-md hover:bg-red-700 transition duration-300 ease-in-out"
             onClick={handleDelete}
           >
             Yes, Delete it
@@ -51,9 +50,9 @@ const DeleteReview = ({ id, onClose, onDelete }) => {
 };
 
 DeleteReview.propTypes = {
-  id: PropTypes.string,
-  onClose: PropTypes.func,
-  onDelete: PropTypes.func,
+  id: PropTypes.string.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
 };
 
 export default DeleteReview;
