@@ -8,8 +8,45 @@ const EditReview = ({oldReview, onClose, onEdit}) => {
   const [rating, setRating] = useState(oldReview.rating);
   const [review, setReview] = useState(oldReview.review);
 
+  // Validation functions
+  function validatebookName() {
+    if (bookName.length === 0) {
+      return false;
+    }
+    return true;
+  }
+
+  function validateAuthor() {
+    if (author.length === 0) {
+      return false;
+    }
+    return true;
+  }
+
+  function validateRating() {
+    if (rating.length === 0) {
+      return false;
+    }
+    return true;
+  }
+
+  function validateReview() {
+    if (review.length === 0) {
+      return false;
+    }
+    return true;
+  }
+
+  // Handle submit
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const isbookNameValid = validatebookName();
+    const isAuthorValid = validateAuthor();
+    const isRatingValid = validateRating();
+    const isReviewValid = validateReview();
+
+    if (!(isbookNameValid && isAuthorValid && isRatingValid && isReviewValid)) {
     const newReview = {
       bookTitle: bookName,
       bookAuthor: author,
@@ -25,6 +62,9 @@ const EditReview = ({oldReview, onClose, onEdit}) => {
       .catch((error) => {
         console.error("Error adding review: ", error);
       });
+    } else {
+      alert("Please fill in all fields");
+    }
   };
 
   return (
@@ -39,6 +79,7 @@ const EditReview = ({oldReview, onClose, onEdit}) => {
         <h1 className=" text-black text-3xl my-4 font-Philosopher text-center">
           Add Review
         </h1>
+        {/* Form */}
         <form onSubmit={handleSubmit}>
           <div className="flex flex-col">
             <label className="ml-0.5 mb-1">Book Name:</label>

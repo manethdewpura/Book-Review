@@ -1,15 +1,52 @@
 import axios from "axios";
-import React from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 
 const AddReview = ({ onClose, onAdd }) => {
-  const [bookName, setBookName] = React.useState("");
-  const [author, setAuthor] = React.useState("");
-  const [rating, setRating] = React.useState("");
-  const [review, setReview] = React.useState("");
+  const [bookName, setBookName] = useState("");
+  const [author, setAuthor] = useState("");
+  const [rating, setRating] = useState("");
+  const [review, setReview] = useState("");
 
+  //Validation functions
+  function validatebookName() {
+    if (bookName.length === 0) {
+      return false;
+    }
+    return true;
+  }
+
+  function validateAuthor() {
+    if (author.length === 0) {
+      return false;
+    }
+    return true;
+  }
+
+  function validateRating() {
+    if (rating.length === 0) {
+      return false;
+    }
+    return true;
+  }
+
+  function validateReview() {
+    if (review.length === 0) {
+      return false;
+    }
+    return true;
+  }
+
+  //Submit function
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
+
+    const isbookNameValid = validatebookName();
+    const isAuthorValid = validateAuthor();
+    const isRatingValid = validateRating();
+    const isReviewValid = validateReview();
+
+    if (isbookNameValid && isAuthorValid && isRatingValid && isReviewValid) {
     const newReview = {
       bookTitle: bookName,
       bookAuthor: author,
@@ -23,9 +60,13 @@ const AddReview = ({ onClose, onAdd }) => {
         onClose();
       })
       .catch((error) => {
-        console.error("Error adding review: ", error);
+        alert("Error: " + error);
       });
+    } else {
+      alert("Please fill all the fields");
+    }
   };
+
   return (
     <div
       className="fixed bg-black bg-opacity-60 top-0 left-0 right-0 bottom-0 z-50 flex justify-center items-center"
@@ -38,6 +79,7 @@ const AddReview = ({ onClose, onAdd }) => {
         <h1 className=" text-black text-3xl my-4 font-Philosopher text-center">
           Add Review
         </h1>
+        {/* Form */}
         <form onSubmit={handleSubmit}>
           <div className="flex flex-col">
             <label className="ml-0.5 mb-1">Book Name:</label>
