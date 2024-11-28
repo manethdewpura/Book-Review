@@ -7,21 +7,24 @@
     git clone https://github.com/IT22128140/Book-Review.git
     ```
 
-2. **Install dependencies:**
+2. **Install dependencies:**  
+
     open frontend and backend folder terminals run the following command:
     ```sh
     npm i
     ```
 
 
-3. **Set up environment variables:**
+3. **Set up environment variables:**  
+
     Create a `.env` file in the backend root directory and add the following:
     ```
     MONGODB_URL = mongodb+srv://dewpuramaneth:oZZcLSoQaj2SxDZ7@book-review.t5ope.mongodb.net/?retryWrites=true&w=majority&appName=Book-Review
     PORT = 3000
     ```
 
-4. **Run the application:**
+4. **Run the application:**  
+
     In the backend and frontend terminals run the following command:
     ```sh
     npm run dev
