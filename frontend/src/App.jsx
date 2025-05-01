@@ -1,6 +1,6 @@
 import {Routes, Route} from "react-router-dom"
 
-import ViewAllReviews from "./assets/pages/ViewAllReviews"
+import ViewAllReviews from "./pages/ViewAllReviews"
 
 function App() {
 

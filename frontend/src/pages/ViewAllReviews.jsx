@@ -13,7 +13,10 @@ const ViewAllReviews = () => {
   const [showDeleteReview, setShowDeleteReview] = useState(false);
   const [review, setReview] = useState({});
   const [id, setId] = useState(0);
-  const [filterRating, setFilterRating] = useState("");
+  const [filterRating, setFilterRating] = useState(() => {
+    // Initialize from localStorage or default to empty string
+    return localStorage.getItem('filterRating') || '';
+  });
   const [sortOrder, setSortOrder] = useState("asc");
 
   // Load reviews on initial render
@@ -28,6 +31,11 @@ const ViewAllReviews = () => {
         console.error("Error fetching data: ", error);
       });
   }, []);
+
+  // Save filter state to localStorage when it changes
+  useEffect(() => {
+    localStorage.setItem('filterRating', filterRating);
+  }, [filterRating]);
 
   // Load reviews
   const loadItems = () => {
@@ -68,6 +76,10 @@ const ViewAllReviews = () => {
     return <p className="text-center text-lg">Loading...</p>;
   }
 
+  const handleFilterChange = (e) => {
+    setFilterRating(e.target.value);
+  };
+
   return (
     <div className="p-4 bg-slate-100 h-screen">
       <h1 className="text-3xl sm:text-6xl font-bold mb-4 text-center">
@@ -89,7 +101,7 @@ const ViewAllReviews = () => {
           <label className="mr-2">Filter by Rating:</label>
           <select
             value={filterRating}
-            onChange={(e) => setFilterRating(e.target.value)}
+            onChange={handleFilterChange}
             className="border border-gray-300 rounded px-2 py-1"
           >
             <option value="">All</option>
@@ -112,51 +124,57 @@ const ViewAllReviews = () => {
           </select>
         </div>
       </div>
-      <ul className="space-y-4">
-        {filteredReviews.map((review) => (
-          <li
-            key={review._id}
-            className="border p-4 rounded shadow bg-white text-sm sm:text-base"
-          >
-            <h3 className="text-lg font-semibold">Book Title: {review.bookTitle}</h3>
-            <p className="text-gray-700">Book Author: {review.bookAuthor}</p>
-            <p className="text-gray-700">Rating: {review.rating} / 5</p>
-            <div className="flex">
-              {[...Array(5)].map((star, i) => (
-                <label key={i}>
-                  {i < review.rating ? (
-                    <FaStar className="text-yellow-500" />
-                  ) : (
-                    <FaRegStar className="text-yellow-500" />
-                  )}
-                </label>
-              ))}
-            </div>
-            <h4 className="text-lg font-semibold mt-2">Review</h4>
-            <p className="text-gray-600">{review.review}</p>
-            <div className="mt-2 flex space-x-2">
-              <button
-                className="bg-green-500 hover:bg-green-700 text-white px-3 py-1 rounded w-full sm:w-auto"
-                onClick={() => {
-                  setShowEditReview(true);
-                  setReview(review);
-                }}
-              >
-                Edit
-              </button>
-              <button
-                className="bg-red-500 hover:bg-red-700 text-white px-3 py-1 rounded w-full sm:w-auto"
-                onClick={() => {
-                  setShowDeleteReview(true);
-                  setId(review._id);
-                }}
-              >
-                Delete
-              </button>
-            </div>
-          </li>
-        ))}
-      </ul>
+      {filteredReviews.length === 0 ? (
+        <div className="text-center text-gray-500 py-4">
+          No reviews found
+        </div>
+      ) : (
+        <ul className="space-y-4">
+          {filteredReviews.map((review) => (
+            <li
+              key={review._id}
+              className="border p-4 rounded shadow bg-white text-sm sm:text-base"
+            >
+              <h3 className="text-lg font-semibold">Book Title: {review.bookTitle}</h3>
+              <p className="text-gray-700">Book Author: {review.bookAuthor}</p>
+              <p className="text-gray-700">Rating: {review.rating} / 5</p>
+              <div className="flex">
+                {[...Array(5)].map((star, i) => (
+                  <label key={i}>
+                    {i < review.rating ? (
+                      <FaStar className="text-yellow-500" />
+                    ) : (
+                      <FaRegStar className="text-yellow-500" />
+                    )}
+                  </label>
+                ))}
+              </div>
+              <h4 className="text-lg font-semibold mt-2">Review</h4>
+              <p className="text-gray-600">{review.review}</p>
+              <div className="mt-2 flex space-x-2">
+                <button
+                  className="bg-green-500 hover:bg-green-700 text-white px-3 py-1 rounded w-full sm:w-auto"
+                  onClick={() => {
+                    setShowEditReview(true);
+                    setReview(review);
+                  }}
+                >
+                  Edit
+                </button>
+                <button
+                  className="bg-red-500 hover:bg-red-700 text-white px-3 py-1 rounded w-full sm:w-auto"
+                  onClick={() => {
+                    setShowDeleteReview(true);
+                    setId(review._id);
+                  }}
+                >
+                  Delete
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
       {showAddReview && (
         <AddReview
           onClose={() => setShowAddReview(false)}
