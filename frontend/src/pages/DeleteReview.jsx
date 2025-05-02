@@ -18,27 +18,27 @@ const DeleteReview = ({ id, onClose, onDelete }) => {
 
   return (
     <div
-      className="fixed bg-black bg-opacity-60 top-0 left-0 right-0 bottom-0 z-50 flex justify-center items-center"
+      className="fixed inset-0 bg-black bg-opacity-60 overflow-y-auto h-full w-full flex justify-center items-center p-4"
       onClick={onClose}
     >
       <div
         onClick={(event) => event.stopPropagation()}
-        className="w-[90%] max-w-md bg-white rounded-xl p-4 flex flex-col relative"
+        className="w-[90%] max-w-md bg-white rounded-xl p-6 shadow-xl transform transition-all relative"
       >
-        <h1 className="text-2xl sm:text-3xl my-4 font-semibold text-center">
+        <h1 className="text-2xl sm:text-3xl mb-6 font-bold text-center text-gray-800">
           Delete Review
         </h1>
         <MdOutlineCancel
-          className="absolute top-4 right-4 text-2xl sm:text-3xl text-red-600 cursor-pointer"
+          className="absolute top-4 right-4 text-2xl sm:text-3xl text-red-600 cursor-pointer hover:text-red-700 transition-colors duration-200"
           onClick={onClose}
         />
         <div className="flex flex-col items-center p-4">
-          <h3 className="text-lg sm:text-xl text-center font-medium mb-6">
+          <h3 className="text-lg sm:text-xl text-center font-medium mb-8 text-gray-700">
             Are you sure you want to delete this review? This action cannot be undone.
           </h3>
 
           <button
-            className="w-full sm:w-auto px-6 py-3 bg-red-600 text-white font-medium rounded-md shadow-md hover:bg-red-700 transition duration-300 ease-in-out"
+            className="w-full sm:w-auto px-6 py-3 bg-red-600 text-white font-medium rounded-md shadow-md hover:bg-red-700 transition-colors duration-200"
             onClick={handleDelete}
           >
             Yes, Delete it

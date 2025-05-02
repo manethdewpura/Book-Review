@@ -122,18 +122,18 @@ const AddReview = ({ onClose, onAdd }) => {
 
   return (
     <div
-      className="fixed bg-black bg-opacity-60 top-0 left-0 right-0 bottom-0 z-50 flex justify-center items-center"
+      className="fixed inset-0 bg-black bg-opacity-60 overflow-y-auto h-full w-full flex justify-center items-center p-4"
       onClick={onClose}
     >
       <div
-        className="w-[90%] max-w-lg bg-white rounded-xl p-4 flex flex-col relative"
+        className="w-[90%] max-w-lg bg-white rounded-xl p-6 shadow-xl transform transition-all"
         onClick={(e) => e.stopPropagation()}
       >
-        <h1 className="text-black text-2xl sm:text-3xl my-4 font-bold text-center">
-          Add Review Form
+        <h1 className="text-gray-800 text-2xl sm:text-3xl mb-6 font-bold text-center">
+          Add Review
         </h1>
         {/* Form */}
-        <form onSubmit={handleSubmit} className="relative z-10">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div className="flex flex-col mb-4">
             <label className="text-sm mb-1">Book Name:</label>
             <input
@@ -207,9 +207,9 @@ const AddReview = ({ onClose, onAdd }) => {
               <span className="text-red-500 text-sm mt-1">{errors.review}</span>
             )}
           </div>
-          <div className="flex justify-end mt-4 relative z-10">
+          <div className="flex justify-end mt-6">
             <button
-              className="w-full sm:w-auto bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="w-full sm:w-auto bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-md transition-colors duration-200"
               type="submit"
             >
               Add Review

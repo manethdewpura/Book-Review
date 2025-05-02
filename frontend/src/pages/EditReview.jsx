@@ -47,19 +47,19 @@ const EditReview = ({ oldReview, onClose, onEdit }) => {
 
   return (
     <div
-      className="fixed bg-black bg-opacity-60 top-0 left-0 right-0 bottom-0 z-50 flex justify-center items-center"
+      className="fixed inset-0 bg-black bg-opacity-60 overflow-y-auto h-full w-full flex justify-center items-center p-4"
       onClick={onClose}
     >
       <div
-        className="w-[90%] max-w-lg bg-white rounded-xl p-4 flex flex-col relative"
+        className="w-[90%] max-w-lg bg-white rounded-xl p-6 shadow-xl transform transition-all"
         onClick={(e) => e.stopPropagation()}
       >
-        <h1 className="text-black text-2xl sm:text-3xl my-4 font-semibold text-center">
+        <h1 className="text-gray-800 text-2xl sm:text-3xl mb-6 font-bold text-center">
           Edit Review
         </h1>
         {/* Form */}
-        <form onSubmit={handleSubmit}>
-          <div className="flex flex-col mb-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="flex flex-col">
             <label className="text-sm mb-1">Book Name:</label>
             <input
               className="h-11 p-2 border-gray-200 rounded-md border-2 shadow-sm"
@@ -70,7 +70,7 @@ const EditReview = ({ oldReview, onClose, onEdit }) => {
               onChange={(e) => setBookName(e.target.value)}
             />
           </div>
-          <div className="flex flex-col mb-4">
+          <div className="flex flex-col">
             <label className="text-sm mb-1">Author:</label>
             <input
               className="h-11 p-2 border-gray-200 rounded-md border-2 shadow-sm"
@@ -81,7 +81,7 @@ const EditReview = ({ oldReview, onClose, onEdit }) => {
               onChange={(e) => setAuthor(e.target.value)}
             />
           </div>
-          <div className="flex flex-col mb-4">
+          <div className="flex flex-col">
             <label className="text-sm mb-1">Rating:</label>
             <div className="flex items-center">
               <input
@@ -97,7 +97,7 @@ const EditReview = ({ oldReview, onClose, onEdit }) => {
               <span className="ml-2 text-sm text-gray-500">/5</span>
             </div>
           </div>
-          <div className="flex flex-col mb-4">
+          <div className="flex flex-col">
             <label className="text-sm mb-1">Review:</label>
             <textarea
               className="h-24 p-2 border-gray-200 rounded-md border-2 shadow-sm resize-none"
@@ -107,12 +107,12 @@ const EditReview = ({ oldReview, onClose, onEdit }) => {
               onChange={(e) => setReview(e.target.value)}
             />
           </div>
-          <div className="flex justify-end mt-4">
+          <div className="flex justify-end mt-6">
             <button
-              className="w-full sm:w-auto bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+              className="w-full sm:w-auto bg-green-500 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-md transition-colors duration-200"
               type="submit"
             >
-              Edit Review
+              Save Changes
             </button>
           </div>
         </form>

@@ -2,7 +2,6 @@ import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cors from "cors";
-
 import BookReviewRoute from "./routes/BookReviewRoute.js";
 
 const app = express();
