@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 const AddReview = ({ onClose, onAdd }) => {
   const [bookName, setBookName] = useState("");
   const [author, setAuthor] = useState("");
-  const [rating, setRating] = useState(""); // Changed initial state to empty string
+  const [rating, setRating] = useState("");
   const [review, setReview] = useState("");
   const [errors, setErrors] = useState({
     bookName: "",
@@ -106,7 +106,7 @@ const AddReview = ({ onClose, onAdd }) => {
         bookTitle: bookName,
         bookAuthor: author,
         review: review,
-        rating: Number(rating), // Convert to number before sending
+        rating: Number(rating),
       };
       axios
         .post("http://localhost:3000/reviews", newReview)
