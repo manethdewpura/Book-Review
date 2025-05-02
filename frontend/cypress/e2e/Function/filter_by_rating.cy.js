@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 describe('Filter Reviews by Rating', () => {
   beforeEach(() => {
     // Reset and seed the database with test data
