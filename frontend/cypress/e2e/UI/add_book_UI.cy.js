@@ -10,7 +10,7 @@ describe('Add Book Form Responsive UI Tests', () => {
 
     // Common setup before each test
     beforeEach(() => {
-        cy.visit('/');
+        cy.visit('http://localhost:3010');
         // Click the Add Review button to open the modal
         cy.contains('button', 'Add Review').click();
     });
