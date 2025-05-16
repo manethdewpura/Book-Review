@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // Test suite for responsive UI testing of the Add Book Form
 describe('Add Book Form Responsive UI Tests', () => {
     // Define viewport sizes for different devices

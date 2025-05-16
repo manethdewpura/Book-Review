@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // Test suite for adding a new book review
 describe("Book Review Functionality", () => {
   // Test case for successfully adding a new book review
